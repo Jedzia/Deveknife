@@ -31,5 +31,13 @@ namespace Deveknife
         /// </summary>
         /// <returns>the location of the selected folder or null if canceled.</returns>
         string PromptFolderBrowserDialog();
+
+        /// <summary>
+        /// Presents a common dialog box that allows the user to specify options for
+        /// selecting a folder.
+        /// </summary>
+        /// <param name="path">The initial path.</param>
+        /// <returns>the location of the selected folder or null if canceled.</returns>
+        string PromptFolderBrowserDialog(string path);
     }
 }

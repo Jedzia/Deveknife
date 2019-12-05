@@ -63,7 +63,7 @@ namespace Deveknife.Blades.GitRegister
             this.buttonEditFolder.DialogService = dialogService;
 
             // Devel: Values for development, remove after testing.
-            this.buttonEditFolder.EditValue = @"D:\Users\Jedzia.pubsiX\AppData\Roaming\MAXON\CINEMA 4D R14_4A9E4467";
+            this.buttonEditFolder.EditValue = @"E:\Projects\Elektronik\test";
 
             this.LoadSavedComparisons();
         }

@@ -27,5 +27,15 @@ namespace Deveknife
 
             return dialog.SelectedPath;
         }
+
+        /// <inheritdoc />
+        public string PromptFolderBrowserDialog(string path)
+        {
+            var dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = path;
+            dialog.ShowDialog();
+
+            return dialog.SelectedPath;
+        }
     }
 }

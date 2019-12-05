@@ -71,8 +71,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="SystemInterface, Version=0.13.0.59, Culture=neutral, PublicKeyToken=fbc3a63dd3cf8960, processorArchitecture=MSIL">
-      <HintPath>..\packages\SystemWrapper.Interfaces.0.13.0.59\lib\net45\SystemInterface.dll</HintPath>
+    <Reference Include="SystemInterface, Version=0.25.0.186, Culture=neutral, PublicKeyToken=fbc3a63dd3cf8960, processorArchitecture=MSIL">
+      <HintPath>..\packages\SystemWrapper.Interfaces.0.25.0.186\lib\net45\SystemInterface.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

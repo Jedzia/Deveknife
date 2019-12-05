@@ -38,7 +38,7 @@ namespace Deveknife.Blades.GitRegister.UI
                 return;
             }
 
-            var folder = this.DialogService.CreateFolderBrowserDialog().PromptFolderBrowserDialog();
+            var folder = this.DialogService.CreateFolderBrowserDialog().PromptFolderBrowserDialog(this.EditValue.ToString());
             this.EditValue = folder;
         }
     }
