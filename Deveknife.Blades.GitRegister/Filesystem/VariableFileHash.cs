@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="VariableFileHash.cs" company="EvePanix">
-//   Copyright (c) Jedzia 2001-2016, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
+//   Copyright (c) Jedzia 2001-2019, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
 // </copyright>
 //  <author>Jedzia</author>
 //  <email>jed69@gmx.de</email>
-//  <date>28.11.2016 14:21</date>
+//  <date>05.12.2019 21:47</date>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Deveknife.Blades.FileMoveTool.Filesystem
 {
     using System;
@@ -46,17 +47,13 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
             }
         }
 
+        public IFileInfo FileInfo => this.fileInfo;
+
         /// <summary>
         /// Gets the full name of the file.
         /// </summary>
         /// <value>The full name.</value>
-        public string FullName
-        {
-            get
-            {
-                return this.fileInfo.FullName;
-            }
-        }
+        public string FullName => this.FileInfo.FullName;
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.

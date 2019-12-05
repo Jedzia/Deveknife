@@ -4,14 +4,16 @@
 // </copyright>
 //  <author>Jedzia</author>
 //  <email>jed69@gmx.de</email>
-//  <date>05.12.2019 14:22</date>
+//  <date>05.12.2019 22:59</date>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Deveknife.Blades.FileMoveTool.Filesystem
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Windows.Forms;
 
     using SystemInterface.IO;
 
@@ -61,7 +63,7 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
         /// Compares the content of two folders.
         /// </summary>
         /// <param name="pathA">The first path for comparison.</param>
-        public void CompareFolders([CanBeNull] string pathA)
+        public void CompareFolders([CanBeNull] string pathA, Func<string, IDirectoryInfo, bool> repositoryFoundCallback)
         {
             this.Logger.Info($"<Exec-Compare> Folder '{pathA}'.");
 
@@ -80,6 +82,34 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
                 return;
             }
 
+            var filterFunc = new Func<IFileInfo, bool>(info => info.FullName.EndsWith("\\.git\\config"));
+
+            //var result1 = SearchAccessibleFiles(dirA, "\\.git\\config",
+            var result1 = this.SearchForDirectories(
+                dirA,
+                "config",
+                (info, b) =>
+                {
+                    var dir = info.Directory.Parent.FullName;
+                    var isValid = filterFunc(info);
+                    if(isValid)
+                    {
+                        this.Logger.Info($"    Git-Config-File: {info.FullName}");
+                        var result = repositoryFoundCallback(dir, info.Directory.Parent);
+                    }
+                    else
+                    {
+                        this.Logger.Debug($"    Skipped Config : {info.FullName}");
+                    }
+
+                    Application.DoEvents();
+                    return new Tuple<bool, IDirectoryInfo>(isValid, info.Directory.Parent);
+
+                    ;
+                });
+
+            return;
+
             var fileListA = dirA.GetFiles("*.*", SearchOption.AllDirectories);
 
             var fileNameListA = fileListA.Select(info => info.Name);
@@ -94,7 +124,6 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
             ////var hashFunc = new Func<IFileInfo, int>(info => info.Length.GetHashCode());
             ////var filtFunc = new Func<IFileInfo, bool>(info => !info.FullName.Contains(".git"));
             ////var filtFunc = new Func<IFileInfo, bool>(info => info.FullName.Contains(".git") && (info.Length > 16 * 1024));
-            var filterFunc = new Func<IFileInfo, bool>(info => info.FullName.Contains(".git\\config"));
             var hashFunc = new Func<IFileInfo, int>(info => info.Name.GetHashCode() + info.Length.GetHashCode());
 
             var fileInfoListA = fileListA.Where(filterFunc).Select(info => new VariableFileHash(info, hashFunc)).ToList();
@@ -110,7 +139,14 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
                     
                 }
             }*/
-            fileInfoListA.ForEach(hash => this.Logger.Info($"    Git-Config-File: {hash.FullName}"));
+            fileInfoListA.ForEach(
+                hash =>
+                {
+                    this.Logger.Info($"    Git-Config-File: {hash.FullName}");
+                    //var dir = hash.FullName;
+                    var dir = hash.FileInfo.Directory.Parent.FullName;
+                    var result = repositoryFoundCallback(dir, hash.FileInfo.Directory.Parent);
+                });
 
             var cnt = 0;
             /*foreach(var file in fileInfoListA)
@@ -127,6 +163,71 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
                     return;
                 }
             }*/
+        }
+
+        IEnumerable<IFileInfo> SearchAccessibleFiles(
+            [NotNull] IDirectoryInfo root,
+            [NotNull] string searchTerm,
+            [NotNull] Func<IFileInfo, bool, bool> hook)
+        {
+            var files = new List<IFileInfo>();
+
+            foreach(var file in root.GetFiles(searchTerm, SearchOption.TopDirectoryOnly))
+            {
+                if(hook(file, false))
+                {
+                    files.Add(file);
+                }
+            }
+
+            foreach(var subDir in root.GetDirectories())
+            {
+                try
+                {
+                    files.AddRange(this.SearchAccessibleFiles(subDir, searchTerm, hook));
+                }
+                catch(UnauthorizedAccessException ex)
+                {
+                    // ...
+                }
+            }
+
+            return files;
+        }
+
+        IEnumerable<IDirectoryInfo> SearchForDirectories(
+            [NotNull] IDirectoryInfo root,
+            [NotNull]  string searchTerm,
+            [NotNull]  Func<IFileInfo, bool, Tuple<bool, IDirectoryInfo>> hook)
+        {
+            var files = new List<IDirectoryInfo>();
+
+            foreach(var file in root.GetFiles(searchTerm, SearchOption.TopDirectoryOnly))
+            {
+                var result = hook(file, false);
+                if(result.Item1)
+                {
+                    files.Add(result.Item2);
+                }
+            }
+
+            foreach(var subDir in root.GetDirectories())
+            {
+                try
+                {
+                    files.AddRange(this.SearchForDirectories(subDir, searchTerm, hook));
+                }
+                catch(UnauthorizedAccessException ex)
+                {
+                    this.Logger.Error($"Unauthorized Access Exception while traversing directory '{subDir.FullName}': {ex.Message}", ex);
+                }
+                catch(ArgumentNullException ex)
+                {
+                    this.Logger.Error($"Argument NullException while traversing directory '{subDir.FullName}': {ex.Message}", ex);
+                }
+            }
+
+            return files;
         }
     }
 }

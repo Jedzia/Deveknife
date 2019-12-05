@@ -4,7 +4,7 @@
 // </copyright>
 //  <author>Jedzia</author>
 //  <email>jed69@gmx.de</email>
-//  <date>05.12.2019 20:24</date>
+//  <date>05.12.2019 21:49</date>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Deveknife.Blades.GitRegister
@@ -215,8 +215,15 @@ namespace Deveknife.Blades.GitRegister
             var repoPath = this.buttonEditFolder.EditValue.ToString();
 
             var checker = new FileChecker(this.Logger, this.DirectoryInfoFactory, this.FileInfoFactory);
-            checker.CompareFolders(repoPath);
-
+            checker.CompareFolders(
+                repoPath,
+                (s, f) =>
+                {
+                    var item = new GitDisplayItem { Name = Path.GetFileName(s), Path = f.FullName, Remote = "RemoteUri", Selected = false };
+                    this.GitDisplayItems.Add(item);
+                    return true;
+                });
+            this.gitDisplayItemBindingSource.ResetBindings(false);
             // var keyFileStream = new FileStream(@"D:\Users\Jedzia.pubsiX\.ssh\vuduo2-id_rsa.ppk",FileMode.Open);
 
             ////var client = new SshClient("vuduo2x", "git", "xxxxx");
