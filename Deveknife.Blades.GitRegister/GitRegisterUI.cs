@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BladeModuleTemplateUI.cs" company="EvePanix">
+// <copyright file="GitRegisterUI.cs" company="EvePanix">
 //   Copyright (c) Jedzia 2001-2019, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
 // </copyright>
 //  <author>Jedzia</author>
@@ -24,7 +24,7 @@ namespace Deveknife.Blades.GitRegister
     /// <summary>
     ///     The user-interface of the  Video-Overview tool.
     /// </summary>
-    public partial class BladeModuleTemplateUI : UserControl, IBladeUI
+    public partial class GitRegisterUI : UserControl, IBladeUI
     {
         /// <summary>
         ///     The fixed filter
@@ -37,7 +37,7 @@ namespace Deveknife.Blades.GitRegister
         private readonly IHost host;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BladeModuleTemplateUI"/> class.
+        /// Initializes a new instance of the <see cref="GitRegisterUI"/> class.
         /// </summary>
         /// <param name="host">
         /// The host.
@@ -48,13 +48,13 @@ namespace Deveknife.Blades.GitRegister
         /// <param name="bladeToolFactory">
         /// The blade tool factory.
         /// </param>
-        public BladeModuleTemplateUI(IHost host, ILogger logger, IBladeToolFactory bladeToolFactory, IDialogService dialogService)
+        public GitRegisterUI(IHost host, ILogger logger, IBladeToolFactory bladeToolFactory, IDialogService dialogService)
             : this()
         {
             Guard.NotNull(() => host, host);
             this.host = host;
             Guard.NotNull(() => logger, logger);
-            this.Logger = logger.CreateChildLogger("BladeModuleTemplateLogger");
+            this.Logger = logger.CreateChildLogger("GitRegisterLogger");
 
             Guard.NotNull(() => bladeToolFactory, bladeToolFactory);
             this.BladeToolFactory = bladeToolFactory;
@@ -69,9 +69,9 @@ namespace Deveknife.Blades.GitRegister
         }
 
         /// <summary>
-        ///     Prevents a default instance of the <see cref="BladeModuleTemplateUI" /> class from being created.
+        ///     Prevents a default instance of the <see cref="GitRegisterUI" /> class from being created.
         /// </summary>
-        private BladeModuleTemplateUI()
+        private GitRegisterUI()
         {
             this.InitializeComponent();
         }
@@ -109,10 +109,10 @@ namespace Deveknife.Blades.GitRegister
         /// <summary>
         /// A method for testing, that throws an exception.
         /// </summary>
-        /// <exception cref="Deveknife.Blades.GitRegister.BladeModuleTemplateException">One to rule them all ... Test Exception.</exception>
+        /// <exception cref="Deveknife.Blades.GitRegister.GitRegisterException">One to rule them all ... Test Exception.</exception>
         public static void ThrowSomething()
         {
-            throw new BladeModuleTemplateException("One to rule them all ... Test Exception.");
+            throw new GitRegisterException("One to rule them all ... Test Exception.");
         }
 
         private string AskCopyPath()
@@ -260,7 +260,7 @@ namespace Deveknife.Blades.GitRegister
         /// <param name="bladeToolFactory">
         /// The blade tool factory.
         /// </param>
-        private void InitGridMenuRunActions(BladeModuleTemplateUiGridMenu<Dummy> gmenu, IBladeToolFactory bladeToolFactory)
+        private void InitGridMenuRunActions(GitRegisterUiGridMenu<Dummy> gmenu, IBladeToolFactory bladeToolFactory)
         {
             this.pbProgress.EditValue = 0L;
             var enigmaFileProcessor = bladeToolFactory.CreateTool<DummyProcessorExample>(
@@ -331,7 +331,7 @@ namespace Deveknife.Blades.GitRegister
         /// </param>
         private void MenuContextClearTextClick(object sender, EventArgs e)
         {
-            this.tbBladeModuleTemplateLog.Clear();
+            this.tbGitRegisterLog.Clear();
         }
 
         /// <summary>
@@ -345,9 +345,9 @@ namespace Deveknife.Blades.GitRegister
         /// </param>
         private void TbOverviewLogTextChanged(object sender, EventArgs e)
         {
-            this.tbBladeModuleTemplateLog.SelectionStart = this.tbBladeModuleTemplateLog.Text.Length;
-            this.tbBladeModuleTemplateLog.ScrollToCaret();
-            this.tbBladeModuleTemplateLog.SelectionLength = 0;
+            this.tbGitRegisterLog.SelectionStart = this.tbGitRegisterLog.Text.Length;
+            this.tbGitRegisterLog.ScrollToCaret();
+            this.tbGitRegisterLog.SelectionLength = 0;
         }
 
         /// <summary>
@@ -383,9 +383,9 @@ namespace Deveknife.Blades.GitRegister
             }
         }
 
-        private void BladeModuleTemplateUI_Load(object sender, EventArgs e)
+        private void GitRegisterUI_Load(object sender, EventArgs e)
         {
-            this.tbBladeModuleTemplateLog.Clear();
+            this.tbGitRegisterLog.Clear();
             this.Logger.Info(string.Format("Initialized: '{0}'.", this.GetType()));
         }
     }

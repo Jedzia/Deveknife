@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BladeModuleTemplateUI.Obsolete.cs" company="EvePanix">
+// <copyright file="GitRegisterUI.Obsolete.cs" company="EvePanix">
 //   Copyright (c) Jedzia 2001-2016, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
 // </copyright>
 //  <author>Jedzia</author>
@@ -13,7 +13,7 @@ namespace Deveknife.Blades.GitRegister
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public partial class BladeModuleTemplateUI
+    public partial class GitRegisterUI
     {
         private void TestCrit2(CriteriaOperator crit)
         {

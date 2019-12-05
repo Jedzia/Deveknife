@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BladeModuleTemplateUiGridMenu.cs" company="EvePanix">
+// <copyright file="GitRegisterUiGridMenu.cs" company="EvePanix">
 //   Copyright (c) Jedzia 2001-2016, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
 // </copyright>
 //  <author>Jedzia</author>
@@ -16,21 +16,21 @@ namespace Deveknife.Blades.GitRegister
     using DevExpress.XtraGrid.Views.Grid;
 
     /// <summary>
-    /// Represents the Context-Menu for the BladeModuleTemplateUi´s gridview.
+    /// Represents the Context-Menu for the GitRegisterUi´s gridview.
     /// </summary>
     /// <typeparam name="T">Underlying type of the Gridview´s data.</typeparam>
-    internal class BladeModuleTemplateUiGridMenu<T>
+    internal class GitRegisterUiGridMenu<T>
         where T : class
     {
-        private readonly Dictionary<string, BladeModuleTemplateUiGridMenuItem<T>> actions;
+        private readonly Dictionary<string, GitRegisterUiGridMenuItem<T>> actions;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BladeModuleTemplateUiGridMenu{T}" /> class.
+        /// Initializes a new instance of the <see cref="GitRegisterUiGridMenu{T}" /> class.
         /// </summary>
         /// <param name="gridview">The bound gridview.</param>
-        public BladeModuleTemplateUiGridMenu(GridView gridview)
+        public GitRegisterUiGridMenu(GridView gridview)
         {
-            this.actions = new Dictionary<string, BladeModuleTemplateUiGridMenuItem<T>>();
+            this.actions = new Dictionary<string, GitRegisterUiGridMenuItem<T>>();
             gridview.PopupMenuShowing += this.GridView1PopupMenuShowing;
         }
 
@@ -42,7 +42,7 @@ namespace Deveknife.Blades.GitRegister
         /// <param name="image">The image of the action.</param>
         public void AddAction(string menuCaption, Action<IEnumerable<T>, string> action, Image image = null)
         {
-            this.actions.Add(menuCaption, new BladeModuleTemplateUiGridMenuItem<T>(menuCaption, action, image));
+            this.actions.Add(menuCaption, new GitRegisterUiGridMenuItem<T>(menuCaption, action, image));
         }
 
         private DXMenuItem CreateCopyMenuItem(string caption, GridView view, Image image = null, EventHandler eventHandler = null)
@@ -120,7 +120,7 @@ namespace Deveknife.Blades.GitRegister
                 }
             }
 
-            BladeModuleTemplateUiGridMenuItem<T> action;
+            GitRegisterUiGridMenuItem<T> action;
             var success = this.actions.TryGetValue(menuItem.Caption, out action);
             if (success)
             {

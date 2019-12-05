@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BladeModuleTemplateRunner.cs" company="EvePanix">
+// <copyright file="GitRegisterRunner.cs" company="EvePanix">
 //   Copyright (c) Jedzia 2001-2016, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
 // </copyright>
 //  <author>Jedzia</author>
@@ -15,14 +15,14 @@ namespace Deveknife.Blades.GitRegister
     /// <summary>
     /// Blade definition and startup initialization.
     /// </summary>
-    public class BladeModuleTemplateRunner : BladeRunner, IBlade
+    public class GitRegisterRunner : BladeRunner, IBlade
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BladeModuleTemplateRunner"/> class.
+        /// Initializes a new instance of the <see cref="GitRegisterRunner"/> class.
         /// </summary>
         /// <param name="host">The host.</param>
         /// <param name="ui">The UI.</param>
-        public BladeModuleTemplateRunner(IHost host, BladeModuleTemplateUI ui)
+        public GitRegisterRunner(IHost host, GitRegisterUI ui)
             : base(host, ui)
         {
             ui.Blade = this;

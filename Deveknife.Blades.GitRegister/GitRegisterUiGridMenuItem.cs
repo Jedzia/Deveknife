@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BladeModuleTemplateUiGridMenuItem.cs" company="EvePanix">
+// <copyright file="GitRegisterUiGridMenuItem.cs" company="EvePanix">
 //   Copyright (c) Jedzia 2001-2014, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
 // </copyright>
 //  <author>Jedzia</author>
@@ -13,18 +13,18 @@ namespace Deveknife.Blades.GitRegister
     using System.Drawing;
 
     /// <summary>
-    /// A menu item storage class for the <see cref="BladeModuleTemplateUiGridMenu{T}" /> class.
+    /// A menu item storage class for the <see cref="GitRegisterUiGridMenu{T}" /> class.
     /// </summary>
     /// <typeparam name="T">Underlying type of the Gridview's data to store.</typeparam>
-    internal class BladeModuleTemplateUiGridMenuItem<T>
+    internal class GitRegisterUiGridMenuItem<T>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BladeModuleTemplateUiGridMenuItem{T}" /> class.
+        /// Initializes a new instance of the <see cref="GitRegisterUiGridMenuItem{T}" /> class.
         /// </summary>
         /// <param name="caption">The caption.</param>
         /// <param name="action">The action.</param>
         /// <param name="image">The image.</param>
-        public BladeModuleTemplateUiGridMenuItem(
+        public GitRegisterUiGridMenuItem(
             string caption,
             Action<IEnumerable<T>, string> action,
             Image image = null)

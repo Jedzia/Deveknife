@@ -2,7 +2,7 @@
 {
     using Deveknife.Blades.GitRegister.UI;
 
-    partial class BladeModuleTemplateUI
+    partial class GitRegisterUI
     {
         /// <summary> 
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tbBladeModuleTemplateLog = new System.Windows.Forms.TextBox();
+            this.tbGitRegisterLog = new System.Windows.Forms.TextBox();
             this.cnt = new System.Windows.Forms.ContextMenuStrip();
             this.mnuCntClearText = new System.Windows.Forms.ToolStripMenuItem();
             this.pbProgress = new DevExpress.XtraEditors.ProgressBarControl();
@@ -156,25 +156,25 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.tbBladeModuleTemplateLog);
+            this.panel2.Controls.Add(this.tbGitRegisterLog);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1311, 102);
             this.panel2.TabIndex = 2;
             // 
-            // tbBladeModuleTemplateLog
+            // tbGitRegisterLog
             // 
-            this.tbBladeModuleTemplateLog.ContextMenuStrip = this.cnt;
-            this.tbBladeModuleTemplateLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbBladeModuleTemplateLog.Location = new System.Drawing.Point(0, 0);
-            this.tbBladeModuleTemplateLog.Multiline = true;
-            this.tbBladeModuleTemplateLog.Name = "tbBladeModuleTemplateLog";
-            this.tbBladeModuleTemplateLog.ReadOnly = true;
-            this.tbBladeModuleTemplateLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbBladeModuleTemplateLog.Size = new System.Drawing.Size(1311, 102);
-            this.tbBladeModuleTemplateLog.TabIndex = 0;
-            this.tbBladeModuleTemplateLog.TextChanged += new System.EventHandler(this.TbOverviewLogTextChanged);
+            this.tbGitRegisterLog.ContextMenuStrip = this.cnt;
+            this.tbGitRegisterLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbGitRegisterLog.Location = new System.Drawing.Point(0, 0);
+            this.tbGitRegisterLog.Multiline = true;
+            this.tbGitRegisterLog.Name = "tbGitRegisterLog";
+            this.tbGitRegisterLog.ReadOnly = true;
+            this.tbGitRegisterLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbGitRegisterLog.Size = new System.Drawing.Size(1311, 102);
+            this.tbGitRegisterLog.TabIndex = 0;
+            this.tbGitRegisterLog.TextChanged += new System.EventHandler(this.TbOverviewLogTextChanged);
             // 
             // cnt
             // 
@@ -324,7 +324,7 @@
             // 
             // eITFormatDisplayBindingSource
             // 
-            this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.BladeModuleTemplateUI.Dummy);
+            this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.GitRegisterUI.Dummy);
             // 
             // treeListExplorer1
             // 
@@ -344,14 +344,14 @@
             this.buttonEditFolder.Size = new System.Drawing.Size(797, 20);
             this.buttonEditFolder.TabIndex = 0;
             // 
-            // BladeModuleTemplateUI
+            // GitRegisterUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
-            this.Name = "BladeModuleTemplateUI";
+            this.Name = "GitRegisterUI";
             this.Size = new System.Drawing.Size(1514, 824);
-            this.Load += new System.EventHandler(this.BladeModuleTemplateUI_Load);
+            this.Load += new System.EventHandler(this.GitRegisterUI_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -385,7 +385,7 @@
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.ProgressBarControl pbProgress;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox tbBladeModuleTemplateLog;
+        private System.Windows.Forms.TextBox tbGitRegisterLog;
         private System.Windows.Forms.Button btnFetchFolder;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnComparerClear;

@@ -66,7 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BladeModuleTemplateException.cs" />
+    <Compile Include="GitRegisterException.cs" />
     <Compile Include="FileQueueProcessor.cs" />
     <Compile Include="Installers\BladesInstaller.cs" />
     <Compile Include="MenuColumnInfo.cs" />
@@ -83,23 +83,23 @@
     </Compile>
     <Compile Include="Util\FileStarter.cs" />
     <Compile Include="Util\RegistryAccess.cs" />
-    <Compile Include="BladeModuleTemplateRunner.cs" />
-    <Compile Include="BladeModuleTemplateUI.cs">
+    <Compile Include="GitRegisterRunner.cs" />
+    <Compile Include="GitRegisterUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BladeModuleTemplateUI.Designer.cs">
-      <DependentUpon>BladeModuleTemplateUI.cs</DependentUpon>
+    <Compile Include="GitRegisterUI.Designer.cs">
+      <DependentUpon>GitRegisterUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="BladeModuleTemplateUI.Obsolete.cs">
+    <Compile Include="GitRegisterUI.Obsolete.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BladeModuleTemplateUiGridMenu.cs" />
-    <Compile Include="BladeModuleTemplateUiGridMenuItem.cs" />
+    <Compile Include="GitRegisterUiGridMenu.cs" />
+    <Compile Include="GitRegisterUiGridMenuItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="BladeModuleTemplateUI.resx">
-      <DependentUpon>BladeModuleTemplateUI.cs</DependentUpon>
+    <EmbeddedResource Include="GitRegisterUI.resx">
+      <DependentUpon>GitRegisterUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Explorer.resx">
       <DependentUpon>Explorer.cs</DependentUpon>
