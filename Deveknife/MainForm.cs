@@ -186,7 +186,7 @@ namespace Deveknife
                     this.tabControl1.SelectTab(lasttab);
                     
                     // ToDo: remove fixed index after testing !!!
-                    this.tabControl1.SelectedIndex = 8;
+                    this.tabControl1.SelectedIndex = 9;
                 }
             }
             catch (Exception ex)

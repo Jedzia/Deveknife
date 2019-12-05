@@ -35,7 +35,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.treeListExplorer1 = new Deveknife.Blades.GitRegister.UI.TreeListExplorer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbBladeModuleTemplateLog = new System.Windows.Forms.TextBox();
@@ -54,6 +53,8 @@
             this.btnSaveLayout = new System.Windows.Forms.Button();
             this.btnFetchFtp = new System.Windows.Forms.Button();
             this.eITFormatDisplayBindingSource = new System.Windows.Forms.BindingSource();
+            this.treeListExplorer1 = new Deveknife.Blades.GitRegister.UI.TreeListExplorer();
+            this.buttonEditFolder = new Deveknife.Blades.GitRegister.UI.FolderButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,6 +70,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eITFormatDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEditFolder.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lbEitFiles
@@ -86,7 +88,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFetch.Location = new System.Drawing.Point(12, 783);
             this.btnFetch.Name = "btnFetch";
-            this.btnFetch.Size = new System.Drawing.Size(135, 38);
+            this.btnFetch.Size = new System.Drawing.Size(124, 38);
             this.btnFetch.TabIndex = 1;
             this.btnFetch.Text = "Fetch";
             this.btnFetch.UseVisualStyleBackColor = true;
@@ -135,19 +137,12 @@
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.treeListExplorer1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel2.Controls.Add(this.buttonEditFolder);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1307, 695);
             this.splitContainerControl1.SplitterPosition = 429;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // treeListExplorer1
-            // 
-            this.treeListExplorer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeListExplorer1.Location = new System.Drawing.Point(0, 0);
-            this.treeListExplorer1.Name = "treeListExplorer1";
-            this.treeListExplorer1.Size = new System.Drawing.Size(429, 695);
-            this.treeListExplorer1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -321,7 +316,7 @@
             this.btnFetchFtp.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnFetchFtp.Location = new System.Drawing.Point(12, 728);
             this.btnFetchFtp.Name = "btnFetchFtp";
-            this.btnFetchFtp.Size = new System.Drawing.Size(135, 38);
+            this.btnFetchFtp.Size = new System.Drawing.Size(124, 38);
             this.btnFetchFtp.TabIndex = 1;
             this.btnFetchFtp.Text = "Fetch Ftp";
             this.btnFetchFtp.UseVisualStyleBackColor = false;
@@ -331,6 +326,24 @@
             // 
             this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.BladeModuleTemplateUI.Dummy);
             // 
+            // treeListExplorer1
+            // 
+            this.treeListExplorer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeListExplorer1.Location = new System.Drawing.Point(0, 0);
+            this.treeListExplorer1.Name = "treeListExplorer1";
+            this.treeListExplorer1.Size = new System.Drawing.Size(429, 695);
+            this.treeListExplorer1.TabIndex = 0;
+            // 
+            // buttonEditFolder
+            // 
+            this.buttonEditFolder.DialogService = null;
+            this.buttonEditFolder.Location = new System.Drawing.Point(14, 39);
+            this.buttonEditFolder.Name = "buttonEditFolder";
+            this.buttonEditFolder.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.buttonEditFolder.Size = new System.Drawing.Size(797, 20);
+            this.buttonEditFolder.TabIndex = 0;
+            // 
             // BladeModuleTemplateUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,6 +351,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "BladeModuleTemplateUI";
             this.Size = new System.Drawing.Size(1514, 824);
+            this.Load += new System.EventHandler(this.BladeModuleTemplateUI_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -355,6 +369,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eITFormatDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEditFolder.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -385,5 +400,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private TreeListExplorer treeListExplorer1;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private FolderButtonEdit buttonEditFolder;
     }
 }

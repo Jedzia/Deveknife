@@ -78,6 +78,9 @@
     <Compile Include="UI\Explorer.designer.cs">
       <DependentUpon>Explorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FolderButtonEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Util\FileStarter.cs" />
     <Compile Include="Util\RegistryAccess.cs" />
     <Compile Include="BladeModuleTemplateRunner.cs" />

@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BladeModuleTemplateUI.cs" company="EvePanix">
-//   Copyright (c) Jedzia 2001-2016, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
+//   Copyright (c) Jedzia 2001-2019, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
 // </copyright>
 //  <author>Jedzia</author>
 //  <email>jed69@gmx.de</email>
-//  <date>22.10.2016 09:13</date>
+//  <date>05.12.2019 11:14</date>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace Deveknife.Blades.GitRegister
 {
     using System;
@@ -14,11 +15,11 @@ namespace Deveknife.Blades.GitRegister
     using System.Linq;
     using System.Windows.Forms;
 
+    using Castle.Core.Logging;
+
     using Deveknife.Api;
     using Deveknife.Blades.GitRegister.Util;
     using Deveknife.Blades.Utils.Filters;
-
-    using Castle.Core.Logging;
 
     /// <summary>
     ///     The user-interface of the  Video-Overview tool.
@@ -47,7 +48,7 @@ namespace Deveknife.Blades.GitRegister
         /// <param name="bladeToolFactory">
         /// The blade tool factory.
         /// </param>
-        public BladeModuleTemplateUI(IHost host, ILogger logger, IBladeToolFactory bladeToolFactory)
+        public BladeModuleTemplateUI(IHost host, ILogger logger, IBladeToolFactory bladeToolFactory, IDialogService dialogService)
             : this()
         {
             Guard.NotNull(() => host, host);
@@ -58,21 +59,12 @@ namespace Deveknife.Blades.GitRegister
             Guard.NotNull(() => bladeToolFactory, bladeToolFactory);
             this.BladeToolFactory = bladeToolFactory;
 
-            // this.eitPictureChooser = new EitListPictureChooser(logger, eit => !this.fixedFilter.Contains(eit.Filename));
-            // this.eitColorer = new EitListColorer(
-            // logger, 
-            // this.GroupEitForColoringFunc, 
-            // eit => !this.fixedFilter.Contains(eit.Filename));
-            // this.eitFetcher = new EitListFetcher(logger);
-            // this.InitGridMenuRunActions(
-            // new BladeModuleTemplateUiGridMenu<EITFormatDisplay>(this.gridView1), 
-            // this.BladeToolFactory);
+            Guard.NotNull(() => dialogService, dialogService);
+            this.buttonEditFolder.DialogService = dialogService;
 
-            // var ftpClient = new FtpClient();
-            // var bladeToolA = this.BladeToolFactory.CreateTool<Dingens>();
-            // var bladeToolB = this.BladeToolFactory.CreateTool<FtpLister>(ftpClient);
-            // var bladeToolB = this.BladeToolFactory.CreateTool<CachedFtpLister>(ftpClient);
-            // var bladeTools = this.BladeToolFactory.CreateAll(ftpClient);
+            // Devel: Values for development, remove after testing.
+            this.buttonEditFolder.EditValue = @"D:\Users\Jedzia.pubsiX\AppData\Roaming\MAXON\CINEMA 4D R14_4A9E4467";
+
             this.LoadSavedComparisons();
         }
 
@@ -98,7 +90,7 @@ namespace Deveknife.Blades.GitRegister
         {
             get
             {
-                return "Blade Module Template";
+                return "Git Registrar";
             }
         }
 
@@ -283,7 +275,7 @@ namespace Deveknife.Blades.GitRegister
                 delegate(IEnumerable<Dummy> items, string s)
                 {
                     var firstOrDefault = items.FirstOrDefault();
-                    if (firstOrDefault == null)
+                    if(firstOrDefault == null)
                     {
                         return;
                     }
@@ -293,8 +285,8 @@ namespace Deveknife.Blades.GitRegister
                     // var filepath = Path.GetFullPath(filename);
                     // var filewoext = Path.GetFileNameWithoutExtension(filename);
                     // var newfile = Path.Combine(filepath, filewoext, ".ts");
-                    foreach (var newfile in
-                        new List<string> { ".ts", ".mkv", ".avi" }.Select(ext => Path.ChangeExtension(filename, ext)).Where(File.Exists))
+                    foreach(var newfile in new List<string> { ".ts", ".mkv", ".avi" }.Select(ext => Path.ChangeExtension(filename, ext))
+                        .Where(File.Exists))
                     {
                         FileStarter.Execute(newfile);
                         return;
@@ -389,6 +381,12 @@ namespace Deveknife.Blades.GitRegister
                 Guard.NotNull(() => select, select);
                 throw new NotImplementedException();
             }
+        }
+
+        private void BladeModuleTemplateUI_Load(object sender, EventArgs e)
+        {
+            this.tbBladeModuleTemplateLog.Clear();
+            this.Logger.Info(string.Format("Initialized: '{0}'.", this.GetType()));
         }
     }
 }
