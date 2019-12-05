@@ -30,15 +30,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbEitFiles = new System.Windows.Forms.ListBox();
             this.btnFetch = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.treeListExplorer1 = new Deveknife.Blades.GitRegister.UI.TreeListExplorer();
+            this.buttonEditFolder = new Deveknife.Blades.GitRegister.UI.FolderButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbGitRegisterLog = new System.Windows.Forms.TextBox();
-            this.cnt = new System.Windows.Forms.ContextMenuStrip();
+            this.cnt = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuCntClearText = new System.Windows.Forms.ToolStripMenuItem();
             this.pbProgress = new DevExpress.XtraEditors.ProgressBarControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -52,9 +55,7 @@
             this.btnFetchFolder = new System.Windows.Forms.Button();
             this.btnSaveLayout = new System.Windows.Forms.Button();
             this.btnFetchFtp = new System.Windows.Forms.Button();
-            this.eITFormatDisplayBindingSource = new System.Windows.Forms.BindingSource();
-            this.treeListExplorer1 = new Deveknife.Blades.GitRegister.UI.TreeListExplorer();
-            this.buttonEditFolder = new Deveknife.Blades.GitRegister.UI.FolderButtonEdit();
+            this.eITFormatDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,6 +64,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEditFolder.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.cnt.SuspendLayout();
@@ -70,7 +72,6 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eITFormatDisplayBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEditFolder.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lbEitFiles
@@ -127,7 +128,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1311, 699);
+            this.panelControl1.Size = new System.Drawing.Size(1311, 542);
             this.panelControl1.TabIndex = 1;
             // 
             // splitContainerControl1
@@ -139,19 +140,37 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.buttonEditFolder);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1307, 695);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1307, 538);
             this.splitContainerControl1.SplitterPosition = 429;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // treeListExplorer1
+            // 
+            this.treeListExplorer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeListExplorer1.Location = new System.Drawing.Point(0, 0);
+            this.treeListExplorer1.Name = "treeListExplorer1";
+            this.treeListExplorer1.Size = new System.Drawing.Size(429, 538);
+            this.treeListExplorer1.TabIndex = 0;
+            // 
+            // buttonEditFolder
+            // 
+            this.buttonEditFolder.DialogService = null;
+            this.buttonEditFolder.Location = new System.Drawing.Point(14, 39);
+            this.buttonEditFolder.Name = "buttonEditFolder";
+            this.buttonEditFolder.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.buttonEditFolder.Size = new System.Drawing.Size(797, 20);
+            this.buttonEditFolder.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.pbProgress);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 699);
+            this.panel1.Location = new System.Drawing.Point(0, 542);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1311, 125);
+            this.panel1.Size = new System.Drawing.Size(1311, 282);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -160,7 +179,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1311, 102);
+            this.panel2.Size = new System.Drawing.Size(1311, 259);
             this.panel2.TabIndex = 2;
             // 
             // tbGitRegisterLog
@@ -172,7 +191,7 @@
             this.tbGitRegisterLog.Name = "tbGitRegisterLog";
             this.tbGitRegisterLog.ReadOnly = true;
             this.tbGitRegisterLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbGitRegisterLog.Size = new System.Drawing.Size(1311, 102);
+            this.tbGitRegisterLog.Size = new System.Drawing.Size(1311, 259);
             this.tbGitRegisterLog.TabIndex = 0;
             this.tbGitRegisterLog.TextChanged += new System.EventHandler(this.TbOverviewLogTextChanged);
             // 
@@ -193,7 +212,7 @@
             // pbProgress
             // 
             this.pbProgress.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pbProgress.Location = new System.Drawing.Point(0, 102);
+            this.pbProgress.Location = new System.Drawing.Point(0, 259);
             this.pbProgress.Name = "pbProgress";
             this.pbProgress.Size = new System.Drawing.Size(1311, 23);
             this.pbProgress.TabIndex = 1;
@@ -326,24 +345,6 @@
             // 
             this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.GitRegisterUI.Dummy);
             // 
-            // treeListExplorer1
-            // 
-            this.treeListExplorer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeListExplorer1.Location = new System.Drawing.Point(0, 0);
-            this.treeListExplorer1.Name = "treeListExplorer1";
-            this.treeListExplorer1.Size = new System.Drawing.Size(429, 695);
-            this.treeListExplorer1.TabIndex = 0;
-            // 
-            // buttonEditFolder
-            // 
-            this.buttonEditFolder.DialogService = null;
-            this.buttonEditFolder.Location = new System.Drawing.Point(14, 39);
-            this.buttonEditFolder.Name = "buttonEditFolder";
-            this.buttonEditFolder.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.buttonEditFolder.Size = new System.Drawing.Size(797, 20);
-            this.buttonEditFolder.TabIndex = 0;
-            // 
             // GitRegisterUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,6 +361,7 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEditFolder.Properties)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -369,7 +371,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eITFormatDisplayBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEditFolder.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

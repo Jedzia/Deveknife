@@ -4,21 +4,24 @@
 // </copyright>
 //  <author>Jedzia</author>
 //  <email>jed69@gmx.de</email>
-//  <date>05.12.2019 11:14</date>
+//  <date>05.12.2019 13:56</date>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Deveknife.Blades.GitRegister
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
 
-    using Castle.Core.Internal;
+    using SystemInterface.IO;
+
     using Castle.Core.Logging;
 
     using Deveknife.Api;
+    using Deveknife.Blades.FileMoveTool.Filesystem;
     using Deveknife.Blades.GitRegister.Util;
     using Deveknife.Blades.Utils.Filters;
 
@@ -40,30 +43,30 @@ namespace Deveknife.Blades.GitRegister
         private readonly IHost host;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GitRegisterUI"/> class.
+        /// Initializes a new instance of the <see cref="GitRegisterUI" /> class.
         /// </summary>
-        /// <param name="host">
-        /// The host.
-        /// </param>
-        /// <param name="logger">
-        /// The logger.
-        /// </param>
-        /// <param name="bladeToolFactory">
-        /// The blade tool factory.
-        /// </param>
-        public GitRegisterUI(IHost host, ILogger logger, IBladeToolFactory bladeToolFactory, IDialogService dialogService)
+        /// <param name="host">The host.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="bladeToolFactory">The blade tool factory.</param>
+        /// <param name="inoutService">The io service.</param>
+        /// <param name="dialogService">The dialog service.</param>
+        public GitRegisterUI(
+            IHost host,
+            ILogger logger,
+            IBladeToolFactory bladeToolFactory,
+            IOService inoutService,
+            IDialogService dialogService)
             : this()
         {
-            Guard.NotNull(() => host, host);
-            this.host = host;
+            this.host = Guard.NotNull(() => host, host);
             Guard.NotNull(() => logger, logger);
             this.Logger = logger.CreateChildLogger("GitRegisterLogger");
 
-            Guard.NotNull(() => bladeToolFactory, bladeToolFactory);
-            this.BladeToolFactory = bladeToolFactory;
+            this.BladeToolFactory = Guard.NotNull(() => bladeToolFactory, bladeToolFactory);
+            this.buttonEditFolder.DialogService = Guard.NotNull(() => dialogService, dialogService);
 
-            Guard.NotNull(() => dialogService, dialogService);
-            this.buttonEditFolder.DialogService = dialogService;
+            this.DirectoryInfoFactory = inoutService.GetWrappedIOServiceFactory().CreateDirectoryInfoFactory();
+            this.FileInfoFactory = inoutService.GetWrappedIOServiceFactory().CreateFileInfoFactory();
 
             // Devel: Values for development, remove after testing.
             this.buttonEditFolder.EditValue = @"E:\Projects\Elektronik\test";
@@ -102,6 +105,19 @@ namespace Deveknife.Blades.GitRegister
         /// </summary>
         /// <value>The blade tool factory.</value>
         public IBladeToolFactory BladeToolFactory { get; private set; }
+
+        /// <summary>
+        /// Gets the directory information factory.
+        /// </summary>
+        /// <value>The directory information factory.</value>
+        public IDirectoryInfoFactory DirectoryInfoFactory { get; private set; }
+
+        /// <summary>
+        /// Gets the file information factory.
+        /// </summary>
+        /// <value>The file information factory.</value>
+        [NotNull]
+        public IFileInfoFactory FileInfoFactory { get; private set; }
 
         /// <summary>
         ///     Gets the logger.
@@ -181,23 +197,46 @@ namespace Deveknife.Blades.GitRegister
         /// </param>
         private void BtnFetchClick(object sender, EventArgs e)
         {
-            using(var repo = new Repository(@"E:\Projects\Elektronik\test\RepoB"))
+            //var repoPath = @"E:\Projects\Elektronik\test\RepoB";
+            var repoPath = this.buttonEditFolder.EditValue.ToString();
+
+
+            var checker = new FileChecker(this.Logger, this.DirectoryInfoFactory, this.FileInfoFactory);
+            checker.CompareFolders(repoPath);
+            return;
+
+            try
             {
-                // Object lookup
-                var obj = repo.Lookup("sha");
-
-                var show = new StatusShowOption();
-                RepositoryStatus status = repo.RetrieveStatus(new StatusOptions() { Show = show });
-
-                // Rev walking
-                //foreach(var c in repo.Commits.Walk("sha"))
-                foreach(var c in repo.Commits)
+                using(var repo = new Repository(repoPath))
                 {
+                    // Object lookup
+                    var obj = repo.Lookup("sha");
 
+                    var show = new StatusShowOption();
+                    var status = repo.RetrieveStatus(new StatusOptions { Show = show });
+
+                    var RFC2822Format = "ddd dd MMM HH:mm:ss yyyy K";
+
+                    foreach(Commit c in repo.Commits.Take(15))
+                    {
+                        this.Logger.Info($"commit {c.Id}");
+
+                        if(c.Parents.Count() > 1)
+                        {
+                            this.Logger.Info($"Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}");
+                        }
+
+                        this.Logger.Info($"Author: {c.Author.Name} <{c.Author.Email}>");
+                        this.Logger.Info($"Date:   {c.Author.When.ToString(RFC2822Format, CultureInfo.InvariantCulture)}");
+                        this.Logger.Info(Environment.NewLine);
+                        this.Logger.Info(c.Message);
+                        this.Logger.Info(Environment.NewLine);
+                    }
                 }
-                //var commits = repo.Commits.StartingAt("sha").Where(c => c).ToList();
-                var commits = repo.Commits.Where(c => !c.Author.Name.IsNullOrEmpty()).ToList();
-                //var sortedCommits = repo.Commits.StartingAt("sha").SortBy(SortMode.Topo).ToList();
+            }
+            catch(Exception exception)
+            {
+                this.Logger.Error($"Exception while traversing directories: {exception.Message}", exception);
             }
         }
 
@@ -270,6 +309,12 @@ namespace Deveknife.Blades.GitRegister
             // var filt = this.gridView1.ActiveFilter;
             // var crit = filt.Criteria;
             // this.TestCrit2(crit);
+        }
+
+        private void GitRegisterUI_Load(object sender, EventArgs e)
+        {
+            this.tbGitRegisterLog.Clear();
+            this.Logger.Info(string.Format("Initialized: '{0}'.", this.GetType()));
         }
 
         /// <summary>
@@ -402,12 +447,6 @@ namespace Deveknife.Blades.GitRegister
                 Guard.NotNull(() => select, select);
                 throw new NotImplementedException();
             }
-        }
-
-        private void GitRegisterUI_Load(object sender, EventArgs e)
-        {
-            this.tbGitRegisterLog.Clear();
-            this.Logger.Info(string.Format("Initialized: '{0}'.", this.GetType()));
         }
     }
 }
