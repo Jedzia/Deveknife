@@ -21,13 +21,17 @@ namespace Deveknife
     {
         private readonly MainForm mainForm;
 
+        private ISettingsProvider settingsProvider;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Horst"/> class.
+        /// Initializes a new instance of the <see cref="Horst" /> class.
         /// </summary>
         /// <param name="mainForm">The main form.</param>
-        public Horst(MainForm mainForm)
+        /// <param name="settingsProvider">The settings provider.</param>
+        public Horst(MainForm mainForm, ISettingsProvider settingsProvider)
         {
-            this.mainForm = mainForm;
+            this.mainForm = Guard.NotNull(() => mainForm, mainForm);
+            this.settingsProvider = Guard.NotNull(() => settingsProvider, settingsProvider);
         }
 
         /// <summary>
@@ -57,6 +61,11 @@ namespace Deveknife
             }
 
             this.OnStatusChanged(data);
+        }
+
+        ISettingsProvider IHost.GetSettingsProvider()
+        {
+            return this.settingsProvider;
         }
 
         /// <summary>

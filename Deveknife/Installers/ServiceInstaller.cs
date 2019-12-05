@@ -46,6 +46,9 @@ namespace Deveknife.Installers
             container.Register(Component.For<IFolderBrowserDialog>().ImplementedBy<FolderBrowserDialogWrap>());
             container.Register(Component.For<IDialogService>().AsFactory());
 
+            // Settings
+            container.Register(Component.For<ISettingsProvider>().ImplementedBy<SettingsProvider>());
+
             // Main Application API
             container.Register(Component.For<IHost>().ImplementedBy<Horst>());
 

@@ -54,6 +54,8 @@ namespace Deveknife.Api
 
         void DisplayStatus(StatusData data);
 
+        ISettingsProvider GetSettingsProvider();
+
         /// <summary>
         /// Notifies the host of items in work.
         /// </summary>

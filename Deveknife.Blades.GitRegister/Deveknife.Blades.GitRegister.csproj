@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Filesystem\FileChecker.cs" />
     <Compile Include="Filesystem\VariableFileHash.cs" />
+    <Compile Include="GitDisplayItem.cs" />
     <Compile Include="GitRegisterException.cs" />
     <Compile Include="FileQueueProcessor.cs" />
     <Compile Include="Installers\BladesInstaller.cs" />

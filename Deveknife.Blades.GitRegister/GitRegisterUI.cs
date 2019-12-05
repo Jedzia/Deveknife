@@ -4,13 +4,14 @@
 // </copyright>
 //  <author>Jedzia</author>
 //  <email>jed69@gmx.de</email>
-//  <date>05.12.2019 15:44</date>
+//  <date>05.12.2019 20:24</date>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Deveknife.Blades.GitRegister
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -73,6 +74,14 @@ namespace Deveknife.Blades.GitRegister
             // Devel: Values for development, remove after testing.
             this.buttonEditFolder.EditValue = @"E:\Projects\Elektronik\test";
 
+            this.GitDisplayItems = new ObservableCollection<GitDisplayItem>
+                                   {
+                                       new GitDisplayItem { Name = "MyName", Path = "MyPath", Remote = "RemoteUri", Selected = false },
+                                       new GitDisplayItem { Name = "MyName2", Path = "MyPath1", Remote = "RemoteUri1", Selected = false },
+                                       new GitDisplayItem { Name = "MyName3", Path = "MyPath2", Remote = "RemoteUri2", Selected = true },
+                                       new GitDisplayItem { Name = "MyName4", Path = "MyPath3", Remote = "RemoteUri3", Selected = false }
+                                   };
+
             this.LoadSavedComparisons();
         }
 
@@ -120,6 +129,8 @@ namespace Deveknife.Blades.GitRegister
         /// <value>The file information factory.</value>
         [NotNull]
         public IFileInfoFactory FileInfoFactory { get; private set; }
+
+        public ObservableCollection<GitDisplayItem> GitDisplayItems { get; set; }
 
         /// <summary>
         ///     Gets the logger.
@@ -209,16 +220,27 @@ namespace Deveknife.Blades.GitRegister
 
             ////var client = new SshClient("vuduo2x", "git", "xxxxx");
             // ReSharper disable StringLiteralTypo
-            var client = new SshClient("vuduo2x", "git", new PrivateKeyFile(@"D:\Users\Jedzia.pubsiX\.ssh\vuduo2-id_rsa"));
-            // ReSharper restore StringLiteralTypo
-            client.Connect();
+            var sp = this.host.GetSettingsProvider();
+            Guard.NotNull(() => sp, sp);
+            var sshHost = sp["SSH_Host"];
+            var sshUser = sp["SSH_User"];
+            var sshKeyFile = sp["SSH_KeyFile"];
+            //Debug.Assert(sshHost != null, nameof(sp) + " sshHost Setting != null");
+            // ToDo: better use a transparent message for users, when no connection setting is applied.
+            Guard.NotNullOrEmpty(() => sshHost, sshHost);
+            Guard.NotNullOrEmpty(() => sshUser, sshUser);
+            Guard.NotNullOrEmpty(() => sshKeyFile, sshKeyFile);
 
-            var result = client.RunCommand("ls -la");
-            var r = result.Result.Replace("\n", "\r\n");
-            this.Logger.Info($"from ssh :{Environment.NewLine}{r}");
+            using(var client = new SshClient(sshHost, sshUser, new PrivateKeyFile(sshKeyFile)))
+            {
+                client.Connect();
 
-            client.Disconnect();
-            client.Dispose();
+                var result = client.RunCommand("ls -la");
+                var r = result.Result.Replace("\n", "\r\n");
+                this.Logger.Info($"from ssh :{Environment.NewLine}{r}");
+
+                client.Disconnect();
+            }
 
             return;
 

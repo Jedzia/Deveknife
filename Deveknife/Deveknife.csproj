@@ -98,6 +98,7 @@
     <Compile Include="ApplicationBlocks\FolderBrowserDialogWrap.cs" />
     <Compile Include="ApplicationBlocks\FileIOService.cs" />
     <Compile Include="ApplicationBlocks\FileOperationAPIWrapper.cs" />
+    <Compile Include="ApplicationBlocks\SettingsProvider.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Installers\ServiceInstaller.cs" />
     <Compile Include="MainForm.cs">
