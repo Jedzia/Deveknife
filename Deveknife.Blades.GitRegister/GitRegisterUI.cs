@@ -27,6 +27,8 @@ namespace Deveknife.Blades.GitRegister
 
     using LibGit2Sharp;
 
+    using Renci.SshNet;
+
     /// <summary>
     ///     The user-interface of the  Video-Overview tool.
     /// </summary>
@@ -203,6 +205,16 @@ namespace Deveknife.Blades.GitRegister
 
             var checker = new FileChecker(this.Logger, this.DirectoryInfoFactory, this.FileInfoFactory);
             checker.CompareFolders(repoPath);
+
+            var client = new SshClient("vuduo2x", "git", "bauer");
+            client.Connect();
+
+            var result = client.RunCommand("echo 123");
+            this.Logger.Info(string.Format("TestMultipleThreadMultipleConnections #{0}", 0));
+
+            client.Disconnect();
+            client.Dispose();
+
             return;
 
             try
