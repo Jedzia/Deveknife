@@ -4,7 +4,7 @@
 // </copyright>
 //  <author>Jedzia</author>
 //  <email>jed69@gmx.de</email>
-//  <date>05.12.2019 13:56</date>
+//  <date>05.12.2019 15:44</date>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Deveknife.Blades.GitRegister
@@ -202,15 +202,20 @@ namespace Deveknife.Blades.GitRegister
             //var repoPath = @"E:\Projects\Elektronik\test\RepoB";
             var repoPath = this.buttonEditFolder.EditValue.ToString();
 
-
             var checker = new FileChecker(this.Logger, this.DirectoryInfoFactory, this.FileInfoFactory);
             checker.CompareFolders(repoPath);
 
-            var client = new SshClient("vuduo2x", "git", "bauer");
+            // var keyFileStream = new FileStream(@"D:\Users\Jedzia.pubsiX\.ssh\vuduo2-id_rsa.ppk",FileMode.Open);
+
+            ////var client = new SshClient("vuduo2x", "git", "xxxxx");
+            // ReSharper disable StringLiteralTypo
+            var client = new SshClient("vuduo2x", "git", new PrivateKeyFile(@"D:\Users\Jedzia.pubsiX\.ssh\vuduo2-id_rsa"));
+            // ReSharper restore StringLiteralTypo
             client.Connect();
 
-            var result = client.RunCommand("echo 123");
-            this.Logger.Info(string.Format("TestMultipleThreadMultipleConnections #{0}", 0));
+            var result = client.RunCommand("ls -la");
+            var r = result.Result.Replace("\n", "\r\n");
+            this.Logger.Info($"from ssh :{Environment.NewLine}{r}");
 
             client.Disconnect();
             client.Dispose();
