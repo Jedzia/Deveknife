@@ -15,11 +15,14 @@ namespace Deveknife.Blades.GitRegister
     using System.Linq;
     using System.Windows.Forms;
 
+    using Castle.Core.Internal;
     using Castle.Core.Logging;
 
     using Deveknife.Api;
     using Deveknife.Blades.GitRegister.Util;
     using Deveknife.Blades.Utils.Filters;
+
+    using LibGit2Sharp;
 
     /// <summary>
     ///     The user-interface of the  Video-Overview tool.
@@ -178,6 +181,24 @@ namespace Deveknife.Blades.GitRegister
         /// </param>
         private void BtnFetchClick(object sender, EventArgs e)
         {
+            using(var repo = new Repository(@"E:\Projects\Elektronik\test\RepoB"))
+            {
+                // Object lookup
+                var obj = repo.Lookup("sha");
+
+                var show = new StatusShowOption();
+                RepositoryStatus status = repo.RetrieveStatus(new StatusOptions() { Show = show });
+
+                // Rev walking
+                //foreach(var c in repo.Commits.Walk("sha"))
+                foreach(var c in repo.Commits)
+                {
+
+                }
+                //var commits = repo.Commits.StartingAt("sha").Where(c => c).ToList();
+                var commits = repo.Commits.Where(c => !c.Author.Name.IsNullOrEmpty()).ToList();
+                //var sortedCommits = repo.Commits.StartingAt("sha").SortBy(SortMode.Topo).ToList();
+            }
         }
 
         /// <summary>
