@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D2C6854-1BE9-4253-9611-D2C4EB4AE562}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Deveknife.Blades.FileManager</RootNamespace>
+    <AssemblyName>Deveknife.Blades.FileManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Deveknife\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Deveknife\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Mvvm.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Core.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.FtpClient, Version=1.0.5824.34026, Culture=neutral, PublicKeyToken=fa4be07daa57c2b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.FtpClient.1.0.5824.34026\lib\net40\System.Net.FtpClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FileManagerException.cs" />
+    <Compile Include="Images\ImageResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImageResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="JobControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JobControl.Designer.cs">
+      <DependentUpon>JobControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Jobs\Compare.cs" />
+    <None Include="app.config" />
+    <None Include="Jobs\Compression\CustomCollectionfromDB.cst.cs" />
+    <Compile Include="Jobs\Compression\dbgenENUM.cs" />
+    <Compile Include="Jobs\Compression\IWinrarParameters.cs" />
+    <Compile Include="Jobs\Compression\WinRAR.cs" />
+    <Compile Include="Jobs\Compression\WinrarParameters.cs" />
+    <Compile Include="Jobs\DeferredJobResult.cs" />
+    <Compile Include="Jobs\FileWinRarAction.cs" />
+    <Compile Include="Jobs\Job.cs" />
+    <Compile Include="Jobs\JobList.cs" />
+    <Compile Include="Jobs\JobParameters.cs" />
+    <Compile Include="Jobs\RootJob.cs" />
+    <Compile Include="Jobs\Traverse.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Explorer.Bars.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DirectoryChangedEventArgs.cs" />
+    <Compile Include="UI\FilesEventArgs.cs" />
+    <Compile Include="UI\Explorer.Events.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileQueueProcessor.cs" />
+    <Compile Include="Installers\BladesInstaller.cs" />
+    <Compile Include="MenuColumnInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\BarInfo.cs" />
+    <Compile Include="UI\Explorer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Explorer.designer.cs">
+      <DependentUpon>Explorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\GridExplorer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\GridExplorer.Designer.cs">
+      <DependentUpon>GridExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\DirectoryInfoWrap.cs" />
+    <Compile Include="Util\FileStarter.cs" />
+    <Compile Include="Util\IDirectoryInfo.cs" />
+    <Compile Include="Util\RegistryAccess.cs" />
+    <Compile Include="FileManagerRunner.cs" />
+    <Compile Include="FileManagerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileManagerUI.Designer.cs">
+      <DependentUpon>FileManagerUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileManagerUI.Obsolete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileManagerUiGridMenu.cs" />
+    <Compile Include="FileManagerUiGridMenuItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ImageResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobControl.resx">
+      <DependentUpon>JobControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="FileManagerUI.resx">
+      <DependentUpon>FileManagerUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Explorer.resx">
+      <DependentUpon>Explorer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\GridExplorer.resx">
+      <DependentUpon>GridExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Deveknife.Api\Deveknife.Api.csproj">
+      <Project>{D556A7C4-FB0B-4B0D-8192-6604DCF88430}</Project>
+      <Name>Deveknife.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Deveknife.Blades\Deveknife.Blades.csproj">
+      <Project>{441FE986-3ADA-455F-A6AC-E5636DEFE6AC}</Project>
+      <Name>Deveknife.Blades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Deveknife.Util\Deveknife.Util.csproj">
+      <Project>{9EBCC6E8-37DD-43EC-8F4E-BD198CDEA98E}</Project>
+      <Name>Deveknife.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Settings.StyleCop">
+      <Link>Settings.StyleCop</Link>
+    </None>
+    <None Include="Jobs\Compression\dbgenENUM.csp" />
+    <None Include="Jobs\Compression\dbgenENUM.cst" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Deveknife.Blades.FileManager.Jobs.DeferredJobResult+JobClosure.datasource" />
+    <None Include="Properties\DataSources\Deveknife.Blades.FileManager.Jobs.Job.datasource" />
+    <None Include="Properties\DataSources\EITFormatDisplay.datasource" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\camera_mount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Globe.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

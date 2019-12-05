@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Deveknife.Blades.Overview" Label="Deveknife.Blades.Overview" Category="Project" />
+    <Node Id="Castle.Core 3.2.2" Label="Castle.Core 3.2.2" Category="Package" />
+    <Node Id="System.Net.FtpClient 1.0.5120.19022" Label="System.Net.FtpClient 1.0.5120.19022" Category="Package" />
+    <Node Id="Deveknife.Blades.Tests" Label="Deveknife.Blades.Tests" Category="Project" />
+    <Node Id="RhinoMocks 3.6.1" Label="RhinoMocks 3.6.1" Category="Package" />
+    <Node Id="Deveknife.Blades" Label="Deveknife.Blades" Category="Project" />
+    <Node Id="Castle.Core 3.2.2" Label="Castle.Core 3.2.2" Category="Package" />
+    <Node Id="Castle.Windsor 3.2.1" Label="Castle.Windsor 3.2.1" Category="Package" />
+    <Node Id="ini-parser 2.0" Label="ini-parser 2.0" Category="Package" />
+    <Node Id="ncalc 1.3.8" Label="ncalc 1.3.8" Category="Package" />
+    <Node Id="TestUni" Label="TestUni" Category="Project" />
+    <Node Id="Newtonsoft.Json 6.0.1" Label="Newtonsoft.Json 6.0.1" Category="Package" />
+    <Node Id="Deveknife" Label="Deveknife" Category="Project" />
+    <Node Id="Castle.Core 3.2.2" Label="Castle.Core 3.2.2" Category="Package" />
+    <Node Id="Castle.Core-NLog 3.2.0" Label="Castle.Core-NLog 3.2.0" Category="Package" />
+    <Node Id="Castle.LoggingFacility 3.2.0" Label="Castle.LoggingFacility 3.2.0" Category="Package" />
+    <Node Id="Castle.Windsor 3.2.1" Label="Castle.Windsor 3.2.1" Category="Package" />
+    <Node Id="Castle.Windsor-NLog 3.2.0.1" Label="Castle.Windsor-NLog 3.2.0.1" Category="Package" />
+    <Node Id="NLog 2.1.0" Label="NLog 2.1.0" Category="Package" />
+  </Nodes>
+  <Links>
+    <Link Source="Deveknife.Blades.Overview" Target="Castle.Core 3.2.2" Category="Installed Package" />
+    <Link Source="Deveknife.Blades.Overview" Target="System.Net.FtpClient 1.0.5120.19022" Category="Installed Package" />
+    <Link Source="Deveknife.Blades.Tests" Target="RhinoMocks 3.6.1" Category="Installed Package" />
+    <Link Source="Castle.Windsor 3.2.1" Target="Castle.Core 3.2.2" Category="Package Dependency" />
+    <Link Source="Deveknife.Blades" Target="Castle.Windsor 3.2.1" Category="Installed Package" />
+    <Link Source="Deveknife.Blades" Target="ini-parser 2.0" Category="Installed Package" />
+    <Link Source="Deveknife.Blades" Target="ncalc 1.3.8" Category="Installed Package" />
+    <Link Source="TestUni" Target="Newtonsoft.Json 6.0.1" Category="Installed Package" />
+    <Link Source="Castle.Core-NLog 3.2.0" Target="Castle.Core 3.2.2" Category="Package Dependency" />
+    <Link Source="Castle.Core-NLog 3.2.0" Target="NLog 2.1.0" Category="Package Dependency" />
+    <Link Source="Castle.LoggingFacility 3.2.0" Target="Castle.Core 3.2.2" Category="Package Dependency" />
+    <Link Source="Castle.LoggingFacility 3.2.0" Target="Castle.Windsor 3.2.1" Category="Package Dependency" />
+    <Link Source="Castle.Windsor 3.2.1" Target="Castle.Core 3.2.2" Category="Package Dependency" />
+    <Link Source="Castle.Windsor-NLog 3.2.0.1" Target="Castle.Core-NLog 3.2.0" Category="Package Dependency" />
+    <Link Source="Castle.Windsor-NLog 3.2.0.1" Target="Castle.LoggingFacility 3.2.0" Category="Package Dependency" />
+    <Link Source="Deveknife" Target="Castle.Windsor-NLog 3.2.0.1" Category="Installed Package" />
+  </Links>
+  <Categories>
+    <Category Id="Project" />
+    <Category Id="Package" />
+  </Categories>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
+      <Condition Expression="HasCategory('Project')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Package Dependency" ValueLabel="True">
+      <Condition Expression="HasCategory('Package Dependency')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>

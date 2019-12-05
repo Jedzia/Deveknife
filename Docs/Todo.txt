@@ -1,0 +1,3 @@
+- Show a user queue, current blade items in progress
+- overall progress
+- RecodeMule progress

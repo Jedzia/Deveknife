@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{441FE986-3ADA-455F-A6AC-E5636DEFE6AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Deveknife.Blades</RootNamespace>
+    <AssemblyName>Deveknife.Blades</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Deveknife\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Deveknife\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="INIFileParser, Version=2.3.0.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.3.0\lib\net20\INIFileParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NCalc">
+      <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BladeRunner.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="Installer\BladesInstaller.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RecodeMule\DeferedAction.cs" />
+    <Compile Include="RecodeMule\Encoding\Encoder.cs" />
+    <Compile Include="RecodeMule\EncoderParameters.cs" />
+    <Compile Include="RecodeMule\Encoding\FFmpeg.cs" />
+    <Compile Include="RecodeMule\Encoding\FFprobe.cs" />
+    <Compile Include="RecodeMule\Encoding\FFprobeParser.cs" />
+    <Compile Include="RecodeMule\Encoding\FileLocker.cs" />
+    <Compile Include="RecodeMule\Encoding\Mencoder.cs" />
+    <Compile Include="RecodeMule\EnigmaFile.cs" />
+    <Compile Include="RecodeMule\INotifyWatcherQueueChanged.cs" />
+    <Compile Include="RecodeMule\ParameterParser.cs" />
+    <Compile Include="Utils\Filters\ChangeDirectoryFilter.cs" />
+    <Compile Include="Utils\Filters\DefaultTextFilter.cs" />
+    <Compile Include="Utils\Filters\FixedPathFilter.cs" />
+    <Compile Include="Utils\Filters\BasePathFilter.cs" />
+    <Compile Include="RecodeMule\RecoderUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RecodeMule\RecoderUI.designer.cs">
+      <DependentUpon>RecoderUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecodeMule\Recoder.cs" />
+    <Compile Include="RecodeMule\RecoderMessage.cs" />
+    <Compile Include="RecodeMule\RecodeMuleRunner.cs" />
+    <Compile Include="RecodeMule\Util\ffprobe.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ffprobe.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RecodeMule\WatcherFarm.cs" />
+    <Compile Include="TestBlade.cs" />
+    <Compile Include="VirtualDubRunner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VirtualDubUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VirtualDubUI.Designer.cs">
+      <DependentUpon>VirtualDubUI.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Deveknife.Api\Deveknife.Api.csproj">
+      <Project>{D556A7C4-FB0B-4B0D-8192-6604DCF88430}</Project>
+      <Name>Deveknife.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Deveknife.Util\Deveknife.Util.csproj">
+      <Project>{9EBCC6E8-37DD-43EC-8F4E-BD198CDEA98E}</Project>
+      <Name>Deveknife.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecodeMule\RecoderUI.resx">
+      <DependentUpon>RecoderUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VirtualDubUI.resx">
+      <DependentUpon>VirtualDubUI.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Settings.StyleCop">
+      <Link>Settings.StyleCop</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RecodeMule\Util\ffprobe.xsd">
+      <SubType>Designer</SubType>
+      <Generator>Xsd2CodeCustomTool</Generator>
+      <LastGenOutput>ffprobe.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

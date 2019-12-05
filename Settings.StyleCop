@@ -1,0 +1,46 @@
+<StyleCopSettings Version="105">
+  <GlobalSettings>
+    <CollectionProperty Name="RecognizedWords">
+      <Value>IO</Value>
+      <Value>io</Value>
+      <Value>ioException</Value>
+      <Value>ioService</Value>
+    </CollectionProperty>
+  </GlobalSettings>
+  <Parsers>
+    <Parser ParserId="StyleCop.CSharp.CsParser">
+      <ParserSettings>
+        <BooleanProperty Name="AnalyzeDesignerFiles">False</BooleanProperty>
+      </ParserSettings>
+    </Parser>
+  </Parsers>
+  <Analyzers>
+    <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
+      <AnalyzerSettings>
+        <StringProperty Name="CompanyName">EvePanix</StringProperty>
+        <StringProperty Name="Copyright">Copyright (c) Jedzia 2001-2016, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.</StringProperty>
+        <BooleanProperty Name="IgnorePrivates">True</BooleanProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+    <Analyzer AnalyzerId="StyleCop.CSharp.SpacingRules">
+      <Rules>
+        <Rule Name="KeywordsMustBeSpacedCorrectly">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
+    <Analyzer AnalyzerId="StyleCop.CSharp.ReadabilityRules">
+      <Rules>
+        <Rule Name="PrefixLocalCallsWithThis">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
+  </Analyzers>
+</StyleCopSettings>

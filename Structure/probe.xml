@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ffprobe>
+    <streams>
+        <stream index="0" codec_name="mpeg2video" codec_long_name="MPEG-2 video" profile="Main" codec_type="video" codec_time_base="1/50" codec_tag_string="[2][0][0][0]" codec_tag="0x0002" width="720" height="576" has_b_frames="1" sample_aspect_ratio="64:45" display_aspect_ratio="16:9" pix_fmt="yuv420p" level="8" timecode="00:00:00:00" id="0x1f5" r_frame_rate="25/1" avg_frame_rate="25/1" time_base="1/90000" start_pts="4776813820" start_time="53075.709111" duration_ts="6264000" duration="69.600000">
+            <disposition default="0" dub="0" original="0" comment="0" lyrics="0" karaoke="0" forced="0" hearing_impaired="0" visual_impaired="0" clean_effects="0" attached_pic="0"/>
+        </stream>
+        <stream index="1" codec_name="mp2" codec_long_name="MP2 (MPEG audio layer 2)" codec_type="audio" codec_time_base="1/48000" codec_tag_string="[3][0][0][0]" codec_tag="0x0003" sample_fmt="s16p" sample_rate="48000" channels="2" channel_layout="stereo" bits_per_sample="0" id="0x1f6" r_frame_rate="0/0" avg_frame_rate="0/0" time_base="1/90000" start_pts="4776817544" start_time="53075.750489" duration_ts="6246720" duration="69.408000" bit_rate="192000">
+            <disposition default="0" dub="0" original="0" comment="0" lyrics="0" karaoke="0" forced="0" hearing_impaired="0" visual_impaired="0" clean_effects="0" attached_pic="0"/>
+            <tag key="language" value="deu"/>
+        </stream>
+        <stream index="2" codec_name="mp2" codec_long_name="MP2 (MPEG audio layer 2)" codec_type="audio" codec_time_base="1/48000" codec_tag_string="[3][0][0][0]" codec_tag="0x0003" sample_fmt="s16p" sample_rate="48000" channels="2" channel_layout="stereo" bits_per_sample="0" id="0x1f7" r_frame_rate="0/0" avg_frame_rate="0/0" time_base="1/90000" start_pts="4776817544" start_time="53075.750489" duration_ts="6246720" duration="69.408000" bit_rate="192000">
+            <disposition default="0" dub="0" original="0" comment="0" lyrics="0" karaoke="0" forced="0" hearing_impaired="0" visual_impaired="0" clean_effects="0" attached_pic="0"/>
+            <tag key="language" value="mul"/>
+        </stream>
+        <stream index="3" codec_type="subtitle" codec_time_base="1/90000" codec_tag_string="[6][0][0][0]" codec_tag="0x0006" id="0x1f8" r_frame_rate="0/0" avg_frame_rate="0/0" time_base="1/90000" start_pts="4776813820" start_time="53075.709111" duration_ts="6264000" duration="69.600000">
+            <disposition default="0" dub="0" original="0" comment="0" lyrics="0" karaoke="0" forced="0" hearing_impaired="0" visual_impaired="0" clean_effects="0" attached_pic="0"/>
+            <tag key="language" value="deu"/>
+        </stream>
+    </streams>
+</ffprobe>
