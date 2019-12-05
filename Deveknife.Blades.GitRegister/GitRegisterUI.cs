@@ -81,6 +81,7 @@ namespace Deveknife.Blades.GitRegister
                                        new GitDisplayItem { Name = "MyName3", Path = "MyPath2", Remote = "RemoteUri2", Selected = true },
                                        new GitDisplayItem { Name = "MyName4", Path = "MyPath3", Remote = "RemoteUri3", Selected = false }
                                    };
+            this.gitDisplayItemBindingSource.DataSource = this.GitDisplayItems;
 
             this.LoadSavedComparisons();
         }

@@ -37,6 +37,9 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.treeListExplorer1 = new Deveknife.Blades.GitRegister.UI.TreeListExplorer();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gitDisplayItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.buttonEditFolder = new Deveknife.Blades.GitRegister.UI.FolderButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -56,6 +59,10 @@
             this.btnSaveLayout = new System.Windows.Forms.Button();
             this.btnFetchFtp = new System.Windows.Forms.Button();
             this.eITFormatDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colSelected = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPath = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRemote = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,6 +71,9 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gitDisplayItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEditFolder.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -138,6 +148,7 @@
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.treeListExplorer1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel2.Controls.Add(this.buttonEditFolder);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1307, 538);
@@ -152,6 +163,31 @@
             this.treeListExplorer1.Name = "treeListExplorer1";
             this.treeListExplorer1.Size = new System.Drawing.Size(429, 538);
             this.treeListExplorer1.TabIndex = 0;
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.DataSource = this.gitDisplayItemBindingSource;
+            this.gridControl1.Location = new System.Drawing.Point(14, 66);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(856, 468);
+            this.gridControl1.TabIndex = 1;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gitDisplayItemBindingSource
+            // 
+            this.gitDisplayItemBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.GitDisplayItem);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSelected,
+            this.colName,
+            this.colPath,
+            this.colRemote});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
             // 
             // buttonEditFolder
             // 
@@ -345,6 +381,38 @@
             // 
             this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.GitRegisterUI.Dummy);
             // 
+            // colSelected
+            // 
+            this.colSelected.FieldName = "Selected";
+            this.colSelected.Name = "colSelected";
+            this.colSelected.Visible = true;
+            this.colSelected.VisibleIndex = 0;
+            this.colSelected.Width = 64;
+            // 
+            // colName
+            // 
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 1;
+            this.colName.Width = 257;
+            // 
+            // colPath
+            // 
+            this.colPath.FieldName = "Path";
+            this.colPath.Name = "colPath";
+            this.colPath.Visible = true;
+            this.colPath.VisibleIndex = 2;
+            this.colPath.Width = 257;
+            // 
+            // colRemote
+            // 
+            this.colRemote.FieldName = "Remote";
+            this.colRemote.Name = "colRemote";
+            this.colRemote.Visible = true;
+            this.colRemote.VisibleIndex = 3;
+            this.colRemote.Width = 260;
+            // 
             // GitRegisterUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,6 +429,9 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gitDisplayItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEditFolder.Properties)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -402,5 +473,12 @@
         private TreeListExplorer treeListExplorer1;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private FolderButtonEdit buttonEditFolder;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.BindingSource gitDisplayItemBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colSelected;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colPath;
+        private DevExpress.XtraGrid.Columns.GridColumn colRemote;
     }
 }
