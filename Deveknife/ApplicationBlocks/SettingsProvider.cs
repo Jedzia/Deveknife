@@ -25,9 +25,14 @@ namespace Deveknife
         {
             this.settings = new Hashtable
                             {
+                                // remote ssh connection and credentials
                                 { "SSH_Host", "vuduo2x" },
                                 { "SSH_User", "git" },
-                                { "SSH_KeyFile", @"D:\Users\Jedzia.pubsiX\.ssh\vuduo2-id_rsa" }
+                                { "SSH_KeyFile", @"D:\Users\Jedzia.pubsiX\.ssh\vuduo2-id_rsa" },
+                                // remote repository creation
+                                { "REMOTE_BasePath", "/media/stick01/gitroot" },
+                                { "REMOTE_CreateBareRepositoryScript", "~/create-repository.sh $1" },
+
                             };
         }
 
