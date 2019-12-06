@@ -143,18 +143,6 @@ namespace Deveknife.Blades.Overview
         private string Str(string str)
         {
             return str.Soundex();
-            
-            var trimmed = str.Replace(Environment.NewLine, "").Trim();
-            var splits = trimmed.Split(new[] { '.', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            var groups = splits.GroupBy(s => s);
-            var enumerable = groups as IGrouping<string, string>[] ?? groups.ToArray();
-            var sgroups = enumerable.OrderBy(grouping => grouping.Count());
-            
-            string res = string.Empty;
-            sgroups.ForEach(s => res += s.Key + " ");
-            return res;
         }
-
-
     }
 }
