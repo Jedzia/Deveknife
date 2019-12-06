@@ -72,8 +72,8 @@ namespace Deveknife.Blades.GitRegister
             this.FileInfoFactory = inoutService.GetWrappedIOServiceFactory().CreateFileInfoFactory();
 
             // Devel: Values for development, remove after testing.
-            // this.buttonEditFolder.EditValue = @"E:\Projects\Elektronik\test";
-            this.buttonEditFolder.EditValue = @"E:\Projects\C++";
+            this.buttonEditFolder.EditValue = @"E:\Projects\Elektronik\test";
+            ////this.buttonEditFolder.EditValue = @"E:\Projects\C++";
 
             this.GitDisplayItems = new ObservableCollection<GitDisplayItem>
                                    {

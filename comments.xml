@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Deveknife.Blades.GitRegister</name>
+  </assembly>
+  <members>
+    <member name="" />
+    <member name="N:Deveknife.Blades.GitRegister" />
+    <member name="M:Deveknife.Blades.GitRegister.GitRegisterUI.InitGridMenuRunActions(GitRegisterUiGridMenu{Dummy},IBladeToolFactory)"> <summary>
+ Initializes the grid menu run actions.
+ </summary>
+ <param name="gmenu">
+ The gmenu.
+ </param>
+ <param name="bladeToolFactory">
+ The blade tool factory.
+ </param></member>
+  </members>
+</doc>
