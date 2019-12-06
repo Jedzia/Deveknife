@@ -104,8 +104,6 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
 
                     Application.DoEvents();
                     return new Tuple<bool, IDirectoryInfo>(isValid, info.Directory.Parent);
-
-                    ;
                 });
 
             return;
@@ -208,6 +206,8 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
                 if(result.Item1)
                 {
                     files.Add(result.Item2);
+                    // assume that we have not to go deeper, when a valid git repository is found.
+                    return files;
                 }
             }
 
@@ -215,7 +215,12 @@ namespace Deveknife.Blades.FileMoveTool.Filesystem
             {
                 try
                 {
+                    // ToDo: check if rearrangement as foreach and early exit can make this better 
                     files.AddRange(this.SearchForDirectories(subDir, searchTerm, hook));
+                }
+                catch(DirectoryNotFoundException ex)
+                {
+                    this.Logger.Error($"Directory '{subDir.FullName}' not found.: {ex.Message}", ex);
                 }
                 catch(UnauthorizedAccessException ex)
                 {

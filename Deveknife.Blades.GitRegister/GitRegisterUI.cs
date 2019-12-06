@@ -72,7 +72,8 @@ namespace Deveknife.Blades.GitRegister
             this.FileInfoFactory = inoutService.GetWrappedIOServiceFactory().CreateFileInfoFactory();
 
             // Devel: Values for development, remove after testing.
-            this.buttonEditFolder.EditValue = @"E:\Projects\Elektronik\test";
+            // this.buttonEditFolder.EditValue = @"E:\Projects\Elektronik\test";
+            this.buttonEditFolder.EditValue = @"E:\Projects\C++";
 
             this.GitDisplayItems = new ObservableCollection<GitDisplayItem>
                                    {
@@ -219,11 +220,53 @@ namespace Deveknife.Blades.GitRegister
                 repoPath,
                 (s, f) =>
                 {
-                    var item = new GitDisplayItem { Name = Path.GetFileName(s), Path = f.FullName, Remote = "RemoteUri", Selected = false };
+                    var item = new GitDisplayItem { Name = Path.GetFileName(s), Path = f.FullName, Remote = "<NOT PRESENT>", Selected = false };
+                    try
+                    {
+                        using(var repo = new Repository(item.Path))
+                        {
+                            // Object lookup
+                            /*var obj0 = repo.Lookup("sha");
+                            var obj1 = repo.Lookup("Sha");
+                            var obj2 = repo.Lookup("origin");*/
+
+                            var remoteUri = repo.Config.GetValueOrDefault<string>("remote.origin.url");
+                            if(!string.IsNullOrEmpty( remoteUri))
+                            {
+                                item.Remote = remoteUri;
+                            }
+
+                            /*var show = new StatusShowOption();
+                            var status = repo.RetrieveStatus(new StatusOptions { Show = show });
+
+                            var RFC2822Format = "ddd dd MMM HH:mm:ss yyyy K";*/
+
+                            /*foreach(Commit c in repo.Commits.Take(15))
+                            {
+                                this.Logger.Info($"commit {c.Id}");
+
+                                if(c.Parents.Count() > 1)
+                                {
+                                    this.Logger.Info($"Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}");
+                                }
+
+                                this.Logger.Info($"Author: {c.Author.Name} <{c.Author.Email}>");
+                                this.Logger.Info($"Date:   {c.Author.When.ToString(RFC2822Format, CultureInfo.InvariantCulture)}");
+                                this.Logger.Info(Environment.NewLine);
+                                this.Logger.Info(c.Message);
+                                this.Logger.Info(Environment.NewLine);
+                            }*/
+                        }
+                    }
+                    catch(Exception exception)
+                    {
+                        this.Logger.Error($"Exception while retrieving git internals: {exception.Message}", exception);
+                    }
+
                     this.GitDisplayItems.Add(item);
+                    this.gitDisplayItemBindingSource.ResetBindings(false);
                     return true;
                 });
-            this.gitDisplayItemBindingSource.ResetBindings(false);
             // var keyFileStream = new FileStream(@"D:\Users\Jedzia.pubsiX\.ssh\vuduo2-id_rsa.ppk",FileMode.Open);
 
             ////var client = new SshClient("vuduo2x", "git", "xxxxx");
@@ -250,41 +293,7 @@ namespace Deveknife.Blades.GitRegister
                 client.Disconnect();
             }
 
-            return;
 
-            try
-            {
-                using(var repo = new Repository(repoPath))
-                {
-                    // Object lookup
-                    var obj = repo.Lookup("sha");
-
-                    var show = new StatusShowOption();
-                    var status = repo.RetrieveStatus(new StatusOptions { Show = show });
-
-                    var RFC2822Format = "ddd dd MMM HH:mm:ss yyyy K";
-
-                    foreach(Commit c in repo.Commits.Take(15))
-                    {
-                        this.Logger.Info($"commit {c.Id}");
-
-                        if(c.Parents.Count() > 1)
-                        {
-                            this.Logger.Info($"Merge: {string.Join(" ", c.Parents.Select(p => p.Id.Sha.Substring(0, 7)).ToArray())}");
-                        }
-
-                        this.Logger.Info($"Author: {c.Author.Name} <{c.Author.Email}>");
-                        this.Logger.Info($"Date:   {c.Author.When.ToString(RFC2822Format, CultureInfo.InvariantCulture)}");
-                        this.Logger.Info(Environment.NewLine);
-                        this.Logger.Info(c.Message);
-                        this.Logger.Info(Environment.NewLine);
-                    }
-                }
-            }
-            catch(Exception exception)
-            {
-                this.Logger.Error($"Exception while traversing directories: {exception.Message}", exception);
-            }
         }
 
         /// <summary>

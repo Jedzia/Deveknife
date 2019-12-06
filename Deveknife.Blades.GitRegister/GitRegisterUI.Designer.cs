@@ -40,6 +40,10 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gitDisplayItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSelected = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPath = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRemote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.buttonEditFolder = new Deveknife.Blades.GitRegister.UI.FolderButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -59,10 +63,6 @@
             this.btnSaveLayout = new System.Windows.Forms.Button();
             this.btnFetchFtp = new System.Windows.Forms.Button();
             this.eITFormatDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colSelected = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPath = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colRemote = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -152,7 +152,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.buttonEditFolder);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1307, 538);
-            this.splitContainerControl1.SplitterPosition = 429;
+            this.splitContainerControl1.SplitterPosition = 235;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -161,16 +161,19 @@
             this.treeListExplorer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeListExplorer1.Location = new System.Drawing.Point(0, 0);
             this.treeListExplorer1.Name = "treeListExplorer1";
-            this.treeListExplorer1.Size = new System.Drawing.Size(429, 538);
+            this.treeListExplorer1.Size = new System.Drawing.Size(235, 538);
             this.treeListExplorer1.TabIndex = 0;
             // 
             // gridControl1
             // 
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.gitDisplayItemBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(14, 66);
+            this.gridControl1.Location = new System.Drawing.Point(1, 65);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(856, 468);
+            this.gridControl1.Size = new System.Drawing.Size(1063, 468);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -188,6 +191,38 @@
             this.colRemote});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            // 
+            // colSelected
+            // 
+            this.colSelected.FieldName = "Selected";
+            this.colSelected.Name = "colSelected";
+            this.colSelected.Visible = true;
+            this.colSelected.VisibleIndex = 0;
+            this.colSelected.Width = 64;
+            // 
+            // colName
+            // 
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 1;
+            this.colName.Width = 257;
+            // 
+            // colPath
+            // 
+            this.colPath.FieldName = "Path";
+            this.colPath.Name = "colPath";
+            this.colPath.Visible = true;
+            this.colPath.VisibleIndex = 2;
+            this.colPath.Width = 257;
+            // 
+            // colRemote
+            // 
+            this.colRemote.FieldName = "Remote";
+            this.colRemote.Name = "colRemote";
+            this.colRemote.Visible = true;
+            this.colRemote.VisibleIndex = 3;
+            this.colRemote.Width = 260;
             // 
             // buttonEditFolder
             // 
@@ -380,38 +415,6 @@
             // eITFormatDisplayBindingSource
             // 
             this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.GitRegisterUI.Dummy);
-            // 
-            // colSelected
-            // 
-            this.colSelected.FieldName = "Selected";
-            this.colSelected.Name = "colSelected";
-            this.colSelected.Visible = true;
-            this.colSelected.VisibleIndex = 0;
-            this.colSelected.Width = 64;
-            // 
-            // colName
-            // 
-            this.colName.FieldName = "Name";
-            this.colName.Name = "colName";
-            this.colName.Visible = true;
-            this.colName.VisibleIndex = 1;
-            this.colName.Width = 257;
-            // 
-            // colPath
-            // 
-            this.colPath.FieldName = "Path";
-            this.colPath.Name = "colPath";
-            this.colPath.Visible = true;
-            this.colPath.VisibleIndex = 2;
-            this.colPath.Width = 257;
-            // 
-            // colRemote
-            // 
-            this.colRemote.FieldName = "Remote";
-            this.colRemote.Name = "colRemote";
-            this.colRemote.Visible = true;
-            this.colRemote.VisibleIndex = 3;
-            this.colRemote.Width = 260;
             // 
             // GitRegisterUI
             // 
