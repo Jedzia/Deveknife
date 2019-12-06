@@ -118,7 +118,6 @@
     <Compile Include="GitRegisterUiGridMenuItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="GitRegisterUI.resx">
       <DependentUpon>GitRegisterUI.cs</DependentUpon>
     </EmbeddedResource>

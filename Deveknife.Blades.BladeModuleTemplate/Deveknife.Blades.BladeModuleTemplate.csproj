@@ -98,7 +98,6 @@
     <Compile Include="BladeModuleTemplateUiGridMenuItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="BladeModuleTemplateUI.resx">
       <DependentUpon>BladeModuleTemplateUI.cs</DependentUpon>
     </EmbeddedResource>
