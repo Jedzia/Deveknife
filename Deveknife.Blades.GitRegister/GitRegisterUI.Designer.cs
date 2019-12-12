@@ -59,7 +59,7 @@
             this.cbSoundex = new System.Windows.Forms.CheckBox();
             this.btnComparerClear = new System.Windows.Forms.Button();
             this.btnComparerSet = new System.Windows.Forms.Button();
-            this.btnFetchFolder = new System.Windows.Forms.Button();
+            this.btnRegisterGit = new System.Windows.Forms.Button();
             this.btnSaveLayout = new System.Windows.Forms.Button();
             this.btnFetchFtp = new System.Windows.Forms.Button();
             this.eITFormatDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -191,6 +191,7 @@
             this.colRemote});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
             // 
             // colSelected
             // 
@@ -336,7 +337,7 @@
             this.groupBox1.Controls.Add(this.cbSoundex);
             this.groupBox1.Controls.Add(this.btnComparerClear);
             this.groupBox1.Controls.Add(this.btnComparerSet);
-            this.groupBox1.Controls.Add(this.btnFetchFolder);
+            this.groupBox1.Controls.Add(this.btnRegisterGit);
             this.groupBox1.Location = new System.Drawing.Point(3, 186);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(193, 133);
@@ -376,18 +377,18 @@
             this.btnComparerSet.UseVisualStyleBackColor = true;
             this.btnComparerSet.Click += new System.EventHandler(this.BtnComparerSetClick);
             // 
-            // btnFetchFolder
+            // btnRegisterGit
             // 
-            this.btnFetchFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnRegisterGit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFetchFolder.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnFetchFolder.Location = new System.Drawing.Point(6, 86);
-            this.btnFetchFolder.Name = "btnFetchFolder";
-            this.btnFetchFolder.Size = new System.Drawing.Size(171, 38);
-            this.btnFetchFolder.TabIndex = 1;
-            this.btnFetchFolder.Text = "Fetch\r\nFolder";
-            this.btnFetchFolder.UseVisualStyleBackColor = false;
-            this.btnFetchFolder.Click += new System.EventHandler(this.BtnFetchFolderClick);
+            this.btnRegisterGit.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnRegisterGit.Location = new System.Drawing.Point(6, 86);
+            this.btnRegisterGit.Name = "btnRegisterGit";
+            this.btnRegisterGit.Size = new System.Drawing.Size(171, 38);
+            this.btnRegisterGit.TabIndex = 1;
+            this.btnRegisterGit.Text = "Register Git Item/s";
+            this.btnRegisterGit.UseVisualStyleBackColor = false;
+            this.btnRegisterGit.Click += new System.EventHandler(this.BtnRegisterGitClick);
             // 
             // btnSaveLayout
             // 
@@ -411,10 +412,6 @@
             this.btnFetchFtp.Text = "Fetch Ftp";
             this.btnFetchFtp.UseVisualStyleBackColor = false;
             this.btnFetchFtp.Click += new System.EventHandler(this.BtnFetchFtpClick);
-            // 
-            // eITFormatDisplayBindingSource
-            // 
-            this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.Dummy);
             // 
             // GitRegisterUI
             // 
@@ -461,7 +458,7 @@
         private DevExpress.XtraEditors.ProgressBarControl pbProgress;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox tbGitRegisterLog;
-        private System.Windows.Forms.Button btnFetchFolder;
+        private System.Windows.Forms.Button btnRegisterGit;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnComparerClear;
         private System.Windows.Forms.Button btnComparerSet;

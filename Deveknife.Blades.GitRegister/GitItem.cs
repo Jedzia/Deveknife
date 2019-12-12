@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GitDisplayItem.cs" company="EvePanix">
+// <copyright file="GitItem.cs" company="EvePanix">
 //   Copyright (c) Jedzia 2001-2019, EvePanix. All rights reserved. See the license notes shipped with this source and the GNU GPL.
 // </copyright>
 //  <author>Jedzia</author>
@@ -12,20 +12,12 @@ namespace Deveknife.Blades.GitRegister
     /// <summary>
     /// Struct Deveknife.Blades.GitRegister.GitDisplayItem
     /// </summary>
-    public class GitDisplayItem
+    public class GitItem
     {
         public string Name { get; set; }
 
         public string Path { get; set; }
 
         public string Remote { get; set; }
-
-        public bool Selected { get; set; }
-
-        public GitItem ToGitItem()
-        {
-            var result = new GitItem { Name = this.Name, Path = this.Path, Remote = this.Remote };
-            return result;
-        }
     }
 }

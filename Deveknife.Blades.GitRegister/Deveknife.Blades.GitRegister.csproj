@@ -87,7 +87,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DummyProcessorExample.cs" />
+    <Compile Include="GitItem.cs" />
+    <Compile Include="GitProcessor.cs" />
     <Compile Include="Filesystem\FileChecker.cs" />
     <Compile Include="Filesystem\VariableFileHash.cs" />
     <Compile Include="GitDisplayItem.cs" />

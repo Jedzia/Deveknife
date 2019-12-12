@@ -310,8 +310,18 @@ namespace Deveknife.Blades.GitRegister
         /// <param name="e">
         /// The <see cref="EventArgs"/> instance containing the event data.
         /// </param>
-        private void BtnFetchFolderClick(object sender, EventArgs e)
+        private void BtnRegisterGitClick(object sender, EventArgs e)
         {
+            var gitProcessor = this.BladeToolFactory.CreateTool<GitProcessor>(
+                /*Globals.FsVideoBasePath,
+                "FtpUserName",
+                "FtpPassword",
+                this.AskCopyPath*/);
+
+            foreach(var displayItem in this.GitDisplayItems.Where(item => item.Selected))
+            {
+                gitProcessor.RegisterWithRemoteGit(displayItem.ToGitItem());
+            }
         }
 
         /// <summary>
@@ -390,7 +400,7 @@ namespace Deveknife.Blades.GitRegister
         private void InitGridMenuRunActions(GitRegisterUiGridMenu<GitDisplayItem> gmenu, IBladeToolFactory bladeToolFactory)
         {
             this.pbProgress.EditValue = 0L;
-            var enigmaFileProcessor = bladeToolFactory.CreateTool<DummyProcessorExample>(
+            var gitProcessor = bladeToolFactory.CreateTool<GitProcessor>(
                 Globals.FsVideoBasePath,
                 "FtpUserName",
                 "FtpPassword",
@@ -421,9 +431,9 @@ namespace Deveknife.Blades.GitRegister
                         return;
                     }
                 });
-            gmenu.AddAction("Copy", (items, s) => enigmaFileProcessor.CopyFiles(items.Select(eitItem => eitItem.Name)));
-            gmenu.AddAction("Move", (items, s) => enigmaFileProcessor.MoveFiles(items.Select(eitItem => eitItem.Name)));
-            gmenu.AddAction("Delete", (items, s) => enigmaFileProcessor.DeleteFiles(items.Select(eitItem => eitItem.Name)));
+            gmenu.AddAction("Copy", (items, s) => gitProcessor.CopyFiles(items.Select(item => item.Name)));
+            gmenu.AddAction("Move", (items, s) => gitProcessor.MoveFiles(items.Select(item => item.Name)));
+            gmenu.AddAction("Delete", (items, s) => gitProcessor.DeleteFiles(items.Select(item => item.Name)));
         }
 
         /// <summary>
