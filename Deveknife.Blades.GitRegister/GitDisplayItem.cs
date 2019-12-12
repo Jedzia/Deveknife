@@ -12,7 +12,7 @@ namespace Deveknife.Blades.GitRegister
     /// <summary>
     /// Struct Deveknife.Blades.GitRegister.GitDisplayItem
     /// </summary>
-    public struct GitDisplayItem
+    public class GitDisplayItem
     {
         /*public bool Selected;
 

@@ -414,7 +414,7 @@
             // 
             // eITFormatDisplayBindingSource
             // 
-            this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.GitRegisterUI.Dummy);
+            this.eITFormatDisplayBindingSource.DataSource = typeof(Deveknife.Blades.GitRegister.Dummy);
             // 
             // GitRegisterUI
             // 

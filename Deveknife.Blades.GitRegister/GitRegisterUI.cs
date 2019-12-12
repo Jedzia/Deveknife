@@ -84,6 +84,8 @@ namespace Deveknife.Blades.GitRegister
                                    };
             this.gitDisplayItemBindingSource.DataSource = this.GitDisplayItems;
 
+            this.InitGridMenuRunActions(new GitRegisterUiGridMenu<GitDisplayItem>(this.gridView1), this.BladeToolFactory);
+
             this.LoadSavedComparisons();
         }
 
@@ -220,7 +222,10 @@ namespace Deveknife.Blades.GitRegister
                 repoPath,
                 (s, f) =>
                 {
-                    var item = new GitDisplayItem { Name = Path.GetFileName(s), Path = f.FullName, Remote = "<NOT PRESENT>", Selected = false };
+                    var item = new GitDisplayItem
+                               {
+                                   Name = Path.GetFileName(s), Path = f.FullName, Remote = "<NOT PRESENT>", Selected = false
+                               };
                     try
                     {
                         using(var repo = new Repository(item.Path))
@@ -231,7 +236,7 @@ namespace Deveknife.Blades.GitRegister
                             var obj2 = repo.Lookup("origin");*/
 
                             var remoteUri = repo.Config.GetValueOrDefault<string>("remote.origin.url");
-                            if(!string.IsNullOrEmpty( remoteUri))
+                            if(!string.IsNullOrEmpty(remoteUri))
                             {
                                 item.Remote = remoteUri;
                             }
@@ -382,7 +387,7 @@ namespace Deveknife.Blades.GitRegister
         /// <param name="bladeToolFactory">
         /// The blade tool factory.
         /// </param>
-        private void InitGridMenuRunActions(GitRegisterUiGridMenu<Dummy> gmenu, IBladeToolFactory bladeToolFactory)
+        private void InitGridMenuRunActions(GitRegisterUiGridMenu<GitDisplayItem> gmenu, IBladeToolFactory bladeToolFactory)
         {
             this.pbProgress.EditValue = 0L;
             var enigmaFileProcessor = bladeToolFactory.CreateTool<DummyProcessorExample>(
@@ -394,7 +399,7 @@ namespace Deveknife.Blades.GitRegister
             // this.EnigmaFileProcessorSetProgress(enigmaFileProcessor);
             gmenu.AddAction(
                 "Open",
-                delegate(IEnumerable<Dummy> items, string s)
+                delegate(IEnumerable<GitDisplayItem> items, string s)
                 {
                     var firstOrDefault = items.FirstOrDefault();
                     if(firstOrDefault == null)
@@ -402,8 +407,10 @@ namespace Deveknife.Blades.GitRegister
                         return;
                     }
 
-                    var filename = firstOrDefault.Filename;
-
+                    var filename = firstOrDefault.Name;
+                    this.Logger.Info($"GridMenuRunAction-Open: {filename}");
+                    return;
+                    
                     // var filepath = Path.GetFullPath(filename);
                     // var filewoext = Path.GetFileNameWithoutExtension(filename);
                     // var newfile = Path.Combine(filepath, filewoext, ".ts");
@@ -414,9 +421,9 @@ namespace Deveknife.Blades.GitRegister
                         return;
                     }
                 });
-            gmenu.AddAction("Copy", (items, s) => enigmaFileProcessor.CopyFiles(items.Select(eitItem => eitItem.Filename)));
-            gmenu.AddAction("Move", (items, s) => enigmaFileProcessor.MoveFiles(items.Select(eitItem => eitItem.Filename)));
-            gmenu.AddAction("Delete", (items, s) => enigmaFileProcessor.DeleteFiles(items.Select(eitItem => eitItem.Filename)));
+            gmenu.AddAction("Copy", (items, s) => enigmaFileProcessor.CopyFiles(items.Select(eitItem => eitItem.Name)));
+            gmenu.AddAction("Move", (items, s) => enigmaFileProcessor.MoveFiles(items.Select(eitItem => eitItem.Name)));
+            gmenu.AddAction("Delete", (items, s) => enigmaFileProcessor.DeleteFiles(items.Select(eitItem => eitItem.Name)));
         }
 
         /// <summary>
@@ -470,39 +477,6 @@ namespace Deveknife.Blades.GitRegister
             this.tbGitRegisterLog.SelectionStart = this.tbGitRegisterLog.Text.Length;
             this.tbGitRegisterLog.ScrollToCaret();
             this.tbGitRegisterLog.SelectionLength = 0;
-        }
-
-        /// <summary>
-        /// Example Class Dummy.
-        /// </summary>
-        private class Dummy
-        {
-            public string Filename { get; [UsedImplicitly] set; }
-        }
-
-        /// <summary>
-        /// Example Class DummyProcessorExample.
-        /// </summary>
-        [UsedImplicitly]
-        private class DummyProcessorExample
-        {
-            public void CopyFiles(IEnumerable<string> select)
-            {
-                Guard.NotNull(() => select, select);
-                throw new NotImplementedException();
-            }
-
-            public void DeleteFiles(IEnumerable<string> select)
-            {
-                Guard.NotNull(() => select, select);
-                throw new NotImplementedException();
-            }
-
-            public void MoveFiles(IEnumerable<string> select)
-            {
-                Guard.NotNull(() => select, select);
-                throw new NotImplementedException();
-            }
         }
     }
 }
